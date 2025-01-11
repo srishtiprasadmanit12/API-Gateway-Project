@@ -1,6 +1,6 @@
-const express = require('express');
-const axios = require('axios');
-const router = express.Router();
+const express = require('express')
+const axios = require('axios')
+const router = express.Router()
 
 router.all('/*', async (req, res) => {
     try {
@@ -8,11 +8,11 @@ router.all('/*', async (req, res) => {
             method: req.method,
             url: `http://localhost:5000${req.path}`,
             data: req.body,
-        });
-        res.status(response.status).send(response.data);
+        })
+        res.status(response.status).send(response.data)
     } catch (error) {
-        res.status(error.response?.status || 500).send(error.message);
+        res.status(error.response?.status || 500).send(error.message)
     }
-});
+})
 
-module.exports = router;
+module.exports = router

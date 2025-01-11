@@ -1,8 +1,10 @@
-const jwt = require('jsonwebtoken')
-require('dotenv').config()
+import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
 
+dotenv.config()
 const authenticate = (req, res, next) => {
-    const token = req.headers['authorization']?.split(' ')[1]
+    // const token = req.headers['authorization']?.split(' ')[1]
+    const token = req.header('Authorization').replace('Bearer ', '');
     if (!token) return res.status(403).send('Access token is required')
     const jwtKey  = process.env.JWT_SECRET
     console.log("jwtToken--------",jwtKey)
@@ -13,4 +15,4 @@ const authenticate = (req, res, next) => {
     })
 }
 
-module.exports = { authenticate }
+export default authenticate

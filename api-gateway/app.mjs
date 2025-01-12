@@ -1,38 +1,41 @@
-import express from 'express';
-import axios from 'axios';
-import dotenv from 'dotenv';
-import morgan from 'morgan';
-import rateLimit from 'express-rate-limit';
-import cors from 'cors';
+import express from 'express'
+import dotenv from 'dotenv'
+import morgan from 'morgan'
+import rateLimit from 'express-rate-limit'
+import cors from 'cors'
+import helmet from 'helmet'
 
-import authenticate from './middleware/auth.mjs';
-import userRoutes from './routes/user.mjs';
-import productRoutes from './routes/product.mjs';
+import authenticate from './middleware/auth.mjs'
+import userRoutes from './routes/user.mjs'
+import productRoutes from './routes/product.mjs'
+import authRoutes from './routes/authRoutes.mjs'
 
-dotenv.config();
+dotenv.config()
 
-const app = express();
-const port = process.env.PORT || 3000;
+const app = express()
+const port = process.env.PORT || 3000
 
 // Middleware
-app.use(express.json());
-app.use(morgan('combined'));
-app.use(cors());
+app.use(express.json())
+app.use(morgan('combined'))
+app.use(cors())
+app.use(helmet()) // Set security-related HTTP headers
 
 // Rate Limiting
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100, // Limit each IP to 100 requests per windowMs
     message: 'Too many requests from this IP, please try again later.',
-});
-app.use(limiter);
+})
+app.use(limiter)
 
 // Routes
-app.use('/user', authenticate, userRoutes);
-app.use('/product', authenticate, productRoutes);
+app.use('/auth', authRoutes)
+app.use('/user', authenticate, userRoutes)
+app.use('/product', authenticate, productRoutes)
 
 // Health Check
-app.get('/', (req, res) => res.send('API Gateway is running!'));
+app.get('/', (req, res) => res.send('API Gateway is running!'))
 
 // Start Server
-app.listen(port, () => console.log(`API Gateway running on port ${port}`));
+app.listen(port, () => console.log(`API Gateway running on port ${port}`))

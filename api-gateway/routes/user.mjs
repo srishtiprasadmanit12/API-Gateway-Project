@@ -1,9 +1,11 @@
 import express from 'express'
 import axios from 'axios'
+import AppError from '../errors.mjs'
+
 
 const router = express.Router()
 
-router.all('/*' ,async(req , res) => {
+router.all('/*' ,async(req , res,next) => {
 try{
     const response = await axios({
         method:req.method,
@@ -13,8 +15,13 @@ try{
     res.status(response.status).send(response.data)
 }
 catch(error){
-    res.status(error.response?.status || 500).send(error.message)
-}
+    if (error.response) {
+        // Operational error: API request failed
+        next(new AppError(error.message, error.response.status));
+    } else {
+        // Programmatic error: unexpected error
+        next(error);
+    }}
 })
 
 export default router

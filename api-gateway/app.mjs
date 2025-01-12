@@ -9,6 +9,8 @@ import authenticate from './middleware/auth.mjs'
 import userRoutes from './routes/user.mjs'
 import productRoutes from './routes/product.mjs'
 import authRoutes from './routes/authRoutes.mjs'
+import errorHandler from './middleware/errorHandler.mjs'
+import AppError from './errors.mjs'
 
 dotenv.config()
 
@@ -36,6 +38,15 @@ app.use('/product', authenticate, productRoutes)
 
 // Health Check
 app.get('/', (req, res) => res.send('API Gateway is running!'))
+
+
+app.all('*',(req, res, next)=> {
+    //Catch any routes that are not found\
+    next(new AppError(`Can't find on this server!`, 404))
+})
+
+console.log("-----errorHandler------")
+app.use(errorHandler)
 
 // Start Server
 app.listen(port, () => console.log(`API Gateway running on port ${port}`))

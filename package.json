@@ -3,23 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.mjs",
-  "type":"module",
+  "type": "module",
   "scripts": {
-  "start": "nodemon api-gateway/app.mjs",
-  "start:api-gateway": "cd api-gateway && nodemon app.mjs",
-  "start:user-service": "cd user-service && nodemon app.mjs",
-  "start:product-service": "cd product-service && nodemon app.mjs",
-  "start:all": "concurrently \"npm run start:api-gateway\" \"npm run start:user-service\" \"npm run start:product-service\""
-},
+    "start": "nodemon api-gateway/app.mjs",
+    "start:api-gateway": "cd api-gateway && nodemon app.mjs",
+    "start:user-service": "cd user-service && nodemon app.mjs",
+    "start:product-service": "cd product-service && nodemon app.mjs",
+    "start:all": "concurrently \"npm run start:api-gateway\" \"npm run start:user-service\" \"npm run start:product-service\""
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.7.9",
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "redis": "^4.7.0"

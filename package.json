@@ -2,14 +2,15 @@
   "name": "api-gateway-project",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "app.mjs",
+  "type":"module",
   "scripts": {
-    "start": "nodemon app.js",
-    "start:api-gateway": "cd api-gateway && nodemon app.js",
-    "start:user-service": "cd user-service && nodemon app.js",
-    "start:product-service": "cd product-service && nodemon app.js",
-    "start:all": "concurrently \"npm run start:api-gateway\" \"npm run start:user-service\" \"npm run start:product-service\""
-  },
+  "start": "nodemon api-gateway/app.mjs",
+  "start:api-gateway": "cd api-gateway && nodemon app.mjs",
+  "start:user-service": "cd user-service && nodemon app.mjs",
+  "start:product-service": "cd product-service && nodemon app.mjs",
+  "start:all": "concurrently \"npm run start:api-gateway\" \"npm run start:user-service\" \"npm run start:product-service\""
+},
   "keywords": [],
   "author": "",
   "license": "ISC",

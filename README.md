@@ -150,6 +150,16 @@ pm2 start product-service/app.mjs --name product-instance3 --env instance3
   "token": "your-jwt-token"
 }
 ```
+### Authentication
+Both the user and product routes are protected by an authentication middleware that requires a valid JWT token in the Authorization header.
+
+Example Request with Authorization Header
+
+To fetch product-service
+`curl -X GET "http://localhost:3000/product/list" -H "Authorization: Bearer your-jwt-token"`
+
+To fetch user-service
+``curl -X GET "http://localhost:3000/user/profile" -H "Authorization: Bearer your-jwt-token"``
 
 ### Error Handling
 The project includes centralized error handling middleware to catch and process both operational and programmatic errors.

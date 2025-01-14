@@ -16,9 +16,9 @@ This project is an API Gateway that routes requests to multiple instances of use
 ## Installation
 
 1. Clone the repository:
-   ```sh
+   ```json
    git clone https://github.com/srishtiprasadmanit12/API-Gateway-Project.git
-
+   ```
    cd API\ Gateway\ Project/
 
 2. Install dependencies:
@@ -32,19 +32,19 @@ Create configuration files for each instance of the user and product services.
 
 File: `instance1.env`
 
-```
+```json
 PORT=4000
 ```
 
 File: `instance2.env`
 
-```
+```json
 PORT=4001
 ```
 
 File: `instance3.env`
 
-```
+```json
 PORT=4002
 ```
 
@@ -52,19 +52,19 @@ PORT=4002
 
 File: `instance1.env`
 
-```
+```json
 PORT=5000
 ```
 
 File: `instance2.env`
 
-```
+```json
 PORT=5001
 ```
 
 File: `instance3.env`
 
-```
+```json
 PORT=5002
 ```
 
@@ -75,7 +75,7 @@ Use separate terminal windows or a process manager like pm2 to run each instance
 
 **User Service Instances:**
 
-```
+```json
 # Terminal 1
 INSTANCE=instance1 node user-service/app.mjs
 
@@ -87,7 +87,7 @@ INSTANCE=instance3 node user-service/app.mjs
 ```
 
 **Product Service Instances:**
-```
+```json
 # Terminal 1
 INSTANCE=instance1 node product-service/app.mjs
 
@@ -102,13 +102,13 @@ INSTANCE=instance3 node product-service/app.mjs
 
 Install `pm2` if not already installed:
 
-```
+```json
 npm install -g pm2
 ```
 
 Start each instance with `pm2`:
 
-```
+```json
 # User Service Instances
 pm2 start user-service/app.mjs --name user-instance1 --env instance1
 pm2 start user-service/app.mjs --name user-instance2 --env instance2
@@ -136,7 +136,7 @@ pm2 start product-service/app.mjs --name product-instance3 --env instance3
 
 - Request Body:
 
-```
+```json
 {
     "username": "testuser",
     "password": "code@123"
@@ -145,7 +145,7 @@ pm2 start product-service/app.mjs --name product-instance3 --env instance3
 
 - Response
 
-```
+```json
 {
   "token": "your-jwt-token"
 }

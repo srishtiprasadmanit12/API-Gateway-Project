@@ -18,7 +18,7 @@ This project is an API Gateway that routes requests to multiple instances of use
 1. Clone the repository:
    ```sh
    git clone https://github.com/srishtiprasadmanit12/API-Gateway-Project.git
-   
+
    cd API\ Gateway\ Project/
 
 2. Install dependencies:
@@ -120,3 +120,54 @@ pm2 start product-service/app.mjs --name product-instance2 --env instance2
 pm2 start product-service/app.mjs --name product-instance3 --env instance3
 ```
 
+## API Endpoints
+
+#### User Service
+-  GET | user/profile 
+   Fetch user profile 
+
+#### Product Service
+- GET | product/list
+    Fetch product details.
+
+#### Authentication
+- POST | auth/login
+    Authenticate user and return a JWT token.
+
+- Request Body:
+
+```
+{
+    "username": "testuser",
+    "password": "code@123"
+}
+```
+
+- Response
+
+```
+{
+  "token": "your-jwt-token"
+}
+```
+
+### Error Handling
+The project includes centralized error handling middleware to catch and process both operational and programmatic errors.
+
+### Operational Errors
+Operational errors are expected and can be handled gracefully. For example, invalid user input or failed API requests.
+
+### Programmatic Errors
+Programmatic errors are unexpected and indicate bugs in the code. These errors are logged for debugging purposes, and a generic error message is sent to the client.
+
+### Load Balancing
+The project uses a round-robin load balancer to distribute requests across multiple instances of the user and product services.
+
+### Round-Robin Load Balancer
+The round-robin load balancer cycles through the list of service instances for each request, ensuring even distribution of requests.
+
+### Contributing
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+
+### License
+This project is licensed under the MIT License. See the LICENSE file for details.

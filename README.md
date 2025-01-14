@@ -17,8 +17,9 @@ This project is an API Gateway that routes requests to multiple instances of use
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/api-gateway-project.git
-   cd api-gateway-project
+   git clone https://github.com/srishtiprasadmanit12/API-Gateway-Project.git
+   
+   cd API\ Gateway\ Project/
 
 2. Install dependencies:
 

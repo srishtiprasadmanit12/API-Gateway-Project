@@ -9,6 +9,7 @@ import authenticate from './middleware/auth.mjs'
 import userRoutes from './routes/user.mjs'
 import productRoutes from './routes/product.mjs'
 import authRoutes from './routes/authRoutes.mjs'
+import paymentRoutes from './routes/payment.mjs'
 import errorHandler from './middleware/errorHandler.mjs'
 import AppError from './errors.mjs'
 
@@ -35,7 +36,8 @@ app.use(limiter)
 app.use('/auth', authRoutes)
 app.use('/user', authenticate, userRoutes)
 app.use('/product', authenticate, productRoutes)
-
+app.use('/payment', paymentRoutes)
+console.log(`-------------paymentRoutes-----------------`)
 // Health Check
 app.get('/', (req, res) => res.send('API Gateway is running!'))
 

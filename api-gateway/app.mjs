@@ -36,7 +36,7 @@ app.use(limiter)
 app.use('/auth', authRoutes)
 app.use('/user', authenticate, userRoutes)
 app.use('/product', authenticate, productRoutes)
-app.use('/payment', paymentRoutes)
+app.use('/payment', authenticate, paymentRoutes)
 console.log(`-------------paymentRoutes-----------------`)
 // Health Check
 app.get('/', (req, res) => res.send('API Gateway is running!'))

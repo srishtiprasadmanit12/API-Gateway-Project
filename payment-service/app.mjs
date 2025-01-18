@@ -8,15 +8,16 @@ const stripe = new Stripe(process.env.STRIPE_SECRET)
 
 
 app.post('/create-checkout-session', async (req, res) => {
+  const { currency, product_name, amount } = req.body
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
         price_data:{
-            currency: 'usd',
+            currency: currency,
             product_data:{
-                name:'lets write code stripe'
+                name:product_name
             },
-            unit_amount: 2000
+            unit_amount: amount
         },
         quantity: 1
       },
